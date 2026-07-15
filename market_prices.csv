@@ -1,0 +1,15 @@
+crop,unit,low_price_ngn,high_price_ngn,typical_season_note,selling_advice
+Maize,50kg bag,15000,22000,"Prices lowest right after harvest (Oct-Nov), rise Feb-Apr","Hold stock past harvest glut if storage available; avoid selling within first 2 weeks of harvest season"
+Cassava (tubers),50kg bag,6000,9000,"Fairly stable year-round; slight rise in dry season","Cassava spoils fast - sell within days of harvest unless processed to garri/flour"
+Cassava (processed - garri),50kg bag,25000,35000,"Prices peak Jun-Aug (lean season)","Processing into garri before selling captures more value and avoids spoilage risk"
+Tomato,large basket,12000,40000,"Extremely volatile - crashes during glut (Dec-Feb), peaks in rainy season scarcity (Jun-Aug)","Highly perishable - avoid holding stock; sell immediately, spread sales across multiple buyers to reduce glut-price risk"
+Pepper (fresh chili),large basket,10000,30000,"Similar volatility to tomato, peaks during scarcity months","Dry or process excess into pepper paste for storage instead of selling at glut prices"
+Rice (paddy, unmilled),100kg bag,28000,38000,"Prices lowest at harvest (Oct-Dec), highest before next planting (Jul-Sep)","Milling before selling typically adds 20-30% value vs selling paddy"
+Yam,tuber (medium),800,2000,"New yam season (Aug-Sep) sees price drop from previous year's scarcity highs","Sort by size before selling - large tubers command premium at urban markets"
+Groundnut (unshelled),50kg bag,20000,30000,"Stable, mild rise Mar-May before new harvest","Shelling before sale increases value but adds labor cost - weigh against local buyer preference"
+Plantain,bunch (medium),1500,4000,"Fairly stable, slight rise during dry season","Sell ripe plantains quickly - unripe green plantains transport and store better if market is farther away"
+
+NOTE TO MARKET ANALYST AGENT:
+- These are illustrative Nigeria-context sample prices (NGN) for demo purposes - not live data.
+- Advise farmers using RANGE and SEASON NOTE, never a single fixed number, since real prices fluctuate by region and week.
+- Always pair a price range with practical timing advice (hold vs sell now) based on the season note and crop perishability.

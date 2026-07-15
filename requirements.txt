@@ -1,0 +1,6 @@
+crewai
+crewai-tools
+litellm
+fastapi
+uvicorn[standard]
+pydantic
