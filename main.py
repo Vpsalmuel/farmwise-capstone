@@ -299,6 +299,9 @@ def form():
   #result { max-width: 480px; margin: 24px auto 0; padding: 16px; border-radius: 8px; background: #16241a; white-space: pre-wrap; display: none; }
   .escalate { border: 1px solid #d98c3d; }
   .blocked { border: 1px solid #c0392b; }
+  .field { margin-bottom: 14px; }
+  .label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #7ec98f; }
+  .field p { margin: 4px 0 0; }
 </style>
 </head>
 <body>
@@ -314,13 +317,30 @@ def form():
   </form>
   <div id="result"></div>
 
+
 <script>
+function formatResult(text) {
+  // Strip markdown code fences if present (```json ... ```)
+  let cleaned = text.replace(/```json|```/g, '').trim();
+  try {
+    const data = JSON.parse(cleaned);
+    return `
+      <div class="field"><span class="label">Diagnosis</span><p>${data.diagnosis || '-'}</p></div>
+      <div class="field"><span class="label">Market Note</span><p>${data.market_note || '-'}</p></div>
+      <div class="field"><span class="label">Recommended Action</span><p>${data.recommended_action || '-'}</p></div>
+    `;
+  } catch (e) {
+    // Fallback: if it's not valid JSON, just show the cleaned text
+    return `<p>${cleaned}</p>`;
+  }
+}
+
 document.getElementById('farmwiseForm').addEventListener('submit', async function(e) {
   e.preventDefault();
   const resultDiv = document.getElementById('result');
   resultDiv.style.display = 'block';
   resultDiv.className = '';
-  resultDiv.textContent = 'Thinking...';
+  resultDiv.innerHTML = 'Thinking...';
 
   const payload = {
     crop: document.getElementById('crop').value,
@@ -338,19 +358,20 @@ document.getElementById('farmwiseForm').addEventListener('submit', async functio
 
     if (data.status === 'blocked') {
       resultDiv.className = 'blocked';
-      resultDiv.textContent = data.message;
+      resultDiv.innerHTML = `<p>${data.message}</p>`;
     } else if (data.status === 'escalated') {
       resultDiv.className = 'escalate';
-      resultDiv.textContent = '⚠️ Escalated to extension officer\\n\\n' + data.result;
+      resultDiv.innerHTML = '<p><strong>⚠️ Escalated to extension officer</strong></p>' + formatResult(data.result);
     } else {
-      resultDiv.textContent = data.result;
+      resultDiv.innerHTML = formatResult(data.result);
     }
   } catch (err) {
     resultDiv.className = 'blocked';
-    resultDiv.textContent = 'Something went wrong. Please try again.';
+    resultDiv.innerHTML = '<p>Something went wrong. Please try again.</p>';
   }
 });
 </script>
+
 </body>
 </html>
 """
